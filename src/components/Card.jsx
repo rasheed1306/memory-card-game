@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 
-const Card = () => {
+const Card = ({ score, setScore, setRepeatedPokemon }) => {
   const [pokemons, setPokemons] = useState([]);
+  const [clickedPokemon, setClickedPokemon] = useState([]);
 
   useEffect(() => {
     const fetchPokemons = async () => {
@@ -11,7 +12,7 @@ const Card = () => {
       const data = await response.json();
 
       const pokemonArray = [];
-      for (let i = 0; i < 30; i++) {
+      for (let i = 0; i < 15; i++) {
         pokemonArray.push({
           id: data.results[i].name,
           src: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
@@ -25,6 +26,24 @@ const Card = () => {
     fetchPokemons();
   }, []);
 
+  useEffect(() => {
+    if (score == 0) {
+      setClickedPokemon([]);
+    }
+    if (score > 0) {
+      setPokemons([...pokemons].sort(() => Math.random() - 0.5));
+    }
+  }, [score]);
+
+  const handleClick = (pokemon) => {
+    if (clickedPokemon.includes(pokemon)) {
+      setRepeatedPokemon(true);
+    } else {
+      setClickedPokemon([...clickedPokemon, pokemon]);
+      setScore(score + 1);
+    }
+  };
+
   return (
     <section
       className="flex flex-wrap my-6 gap-4 justify-center items-center"
@@ -33,7 +52,8 @@ const Card = () => {
       {pokemons.map((pokemon) => (
         <article
           key={pokemon.id}
-          className="flex-col items-center justify-center px-2 mx-2 border-black border-3 rounded-xl"
+          onClick={() => handleClick(pokemon)}
+          className="flex flex-col items-center justify-center px-2 mx-2 border-black border-3 rounded-xl hover:shadow-2xl hover:shadow-yellow-300 transition-shadow duration-300 cursor-pointer"
           aria-labelledby={`pokemon-title-${pokemon.id}`}
         >
           <img src={pokemon.src} alt={pokemon.alt} width={250} height={250} />
