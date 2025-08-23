@@ -1,2 +1,17 @@
 @import "tailwindcss";
 
+
+
+@layer components {
+  h2 {
+    @apply text-2xl italic pb-6 font-bold text-center capitalize;
+  }
+  h1 {
+    @apply text-5xl font-bold py-5 ml-5;
+  }
+  h3 {
+    @apply ml-5;
+  }
+}
+
+
