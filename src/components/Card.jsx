@@ -12,7 +12,7 @@ const Card = ({ score, setScore, setRepeatedPokemon }) => {
       const data = await response.json();
 
       const pokemonArray = [];
-      for (let i = 0; i < 15; i++) {
+      for (let i = 0; i < 30; i++) {
         pokemonArray.push({
           id: data.results[i].name,
           src: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${

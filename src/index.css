@@ -1,16 +1,22 @@
 @import "tailwindcss";
 
-
-
 @layer components {
   h2 {
-    @apply text-2xl italic pb-6 font-bold text-center capitalize;
+    font-size: 1.5rem;
+    font-style: italic;
+    padding-bottom: 1.5rem;
+    font-weight: 700;
+    text-align: center;
+    text-transform: capitalize;
   }
   h1 {
-    @apply text-5xl font-bold py-5 ml-5;
+    font-size: 3rem;
+    font-weight: 700;
+    padding: 1.25rem 0;
+    margin-left: 1.25rem;
   }
   h3 {
-    @apply ml-5;
+    margin-left: 1.25rem;
   }
 }
 
